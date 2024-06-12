@@ -11,10 +11,25 @@ Chúng tôi sẽ bắt đầu bằng việc thiết lập một mô hình CRUD (
 - **Lấy Danh Sách Người Dùng Theo Tên (Get User List)**
 
 ## Mô hình triển khai
-![""](architecture.png)
+![""](image/architecture.png)
+
+## Setup môi trường 
+### 1. Tạo RDS Postgres trên aws 
+Truy cập vào AWS Console, tìm kiếm RDS. 
+
+![alt text](image/image-1.png)
+
+Tại đây tiến hành chọn **create database**
+
+![alt text](image/image.png)
+
+Sau khi database khởi tạo hoàn tất , chúng ta có thể lấy endpoint để kết nối như hình bên dưới.
+
+![alt text](image/image-2.png)
 
 
-### Tạo Bảng User
+### 2. Connect db và tạo table user
+Tạo Bảng User
 Đầu tiên, chúng ta cần tạo một bảng `users` để lưu trữ thông tin. Dưới đây là câu lệnh SQL để tạo bảng:
 
 ```sql
@@ -26,6 +41,54 @@ CREATE TABLE "users" (
     PRIMARY KEY ("id")
 );
 ```
+
+### 2. Install go 
+Truy cập link bên dưới, sau đó chọn go cho hệ điều hành tương ứng và tiến hành cài đặt.
+
+https://go.dev/dl/
+
+![alt text](image/image-3.png)
+
+### 3. Install nodejs 
+
+Truy cập link bên dưới để tiến hành cài nodejs 
+
+https://nodejs.org/en
+
+![alt text](image/image-4.png)
+
+### 4. Install serverless 
+
+Sau khi cài đặt nodejs thành công, tiến hành install serverless 
+
+```cmd
+npm i serverless -g
+```
+
+### 5. Clone source 
+
+Chạy lệnh bên dưới để pull source code: 
+
+```git
+git clone https://github.com/mentor-online/aws-serverless-crud-postgres.git
+```
+
+
+### 6. Build và deploy 
+
+Sử dụng vscode mở terminal lên và thực thi lệnh sau để tiến hành build source code và deploy lên aws: 
+
+```cmd 
+make deploy 
+```
+
+### 7. Remove resource
+
+Thực thi lệnh bên dưới để tiến hành remove source khi không sử dụng:
+```cmd 
+sls remove 
+```
+
 
 ### Cấu Trúc API
 Mỗi API sẽ có đầu vào là thông tin của người dùng và đầu ra là kết quả của quá trình xử lý. Đặc biệt, bạn cần kiểm tra tính duy nhất của `username` khi tạo mới, không sử dụng ràng buộc unique của cơ sở dữ liệu.

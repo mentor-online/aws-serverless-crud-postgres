@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "226c7400-0b1a-4a15-8296-8bfd8108edec",
+		"name": "aws-serverless(lambda, api gateway, rds)-crud",
+		"description": "Trong bối cảnh công nghệ thông tin ngày càng phát triển, việc xây dựng các ứng dụng có khả năng mở rộng và linh hoạt là rất cần thiết. Khóa học này sẽ giúp bạn hiểu sâu hơn về việc triển khai các dịch vụ không máy chủ (serverless) trên nền tảng AWS, sử dụng RDS PostgreSQL làm cơ sở dữ liệu, và kiểm soát tải với API Gateway.\n\n\\## Thông Tin Khóa HọcChúng tôi sẽ bắt đầu bằng việc thiết lập một mô hình CRUD (Tạo, Đọc, Cập nhật, Xóa) serverless cho ứng dụng của bạn, sử dụng RDS PostgreSQL. Bạn sẽ được hướng dẫn cách xây dựng và quản lý bốn API sau để tương tác với cơ sở dữ liệu:  \n\\- **Tạo Người Dùng Mới (Create User)**\n\n\\- **Cập Nhật Thông Tin Người Dùng (Update User)**\n\n\\- **Xóa Người Dùng Theo Tên Người Dùng (Delete User)**\n\n\\- **Lấy Danh Sách Người Dùng Theo Tên (Get User List)**",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21007076"
+	},
+	"item": [
+		{
+			"name": "get all users by name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid'); ",
+							"pm.environment.set(\"messageid\", uuid.v4());",
+							"pm.environment.set(\"transactionid\", uuid.v4());",
+							"",
+							"const moment = require('moment');",
+							"pm.globals.set(\"messagetimestamp\", new Date().toISOString());",
+							"// \"requestTime\": \"2024-04-17T03:06:37.596Z\", // time format time.RFC3339 (new Date()).toISOString(), // time format time.RFC3339"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ibm-Client-Secret",
+						"value": "HftHOlDzzR9GfPJB1nQYr8s39jbp6f3z6vUXvVdh",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestId\": \"{{uuid}}\",\n    \"requestTime\": \"{{timeRPC3339}}\",\n    \"data\": {\n        \"username\": \"MentorOnline\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4asyooxqta.execute-api.us-east-1.amazonaws.com/dev/getusers",
+					"protocol": "https",
+					"host": [
+						"4asyooxqta",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"getusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid'); ",
+							"pm.environment.set(\"messageid\", uuid.v4());",
+							"pm.environment.set(\"transactionid\", uuid.v4());",
+							"",
+							"const moment = require('moment');",
+							"pm.globals.set(\"timeRPC3339\", new Date().toISOString());",
+							"pm.globals.set(\"data\",\"MentorOnline\");",
+							"// \"requestTime\": \"2024-04-17T03:06:37.596Z\", // time format time.RFC3339 (new Date()).toISOString(), // time format time.RFC3339"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ibm-Client-Secret",
+						"value": "HftHOlDzzR9GfPJB1nQYr8s39jbp6f3z6vUXvVdh",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestId\": \"{{uuid}}\",\n    \"requestTime\": \"{{timeRPC3339}}\",\n    \"data\": {\n        \"username\": \"{{data}}\",\n        \"name\": \"{{data}}\",\n        \"phone\": \"{{data}}\"\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4asyooxqta.execute-api.us-east-1.amazonaws.com/dev/insert",
+					"protocol": "https",
+					"host": [
+						"4asyooxqta",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid'); ",
+							"pm.environment.set(\"messageid\", uuid.v4());",
+							"pm.environment.set(\"transactionid\", uuid.v4());",
+							"",
+							"const moment = require('moment');",
+							"pm.globals.set(\"timeRPC3339\", new Date().toISOString());",
+							"pm.globals.set(\"string\", \"new info\")",
+							"// \"requestTime\": \"2024-04-17T03:06:37.596Z\", // time format time.RFC3339 (new Date()).toISOString(), // time format time.RFC3339"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ibm-Client-Secret",
+						"value": "HftHOlDzzR9GfPJB1nQYr8s39jbp6f3z6vUXvVdh",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestId\": \"{{uuid}}\",\n    \"requestTime\": \"{{timeRPC3339}}\",\n    \"data\": {\n        \"username\": \"MentorOnline\",\n        \"name\": \"{{string}}\",\n        \"phone\": \"{{string}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4asyooxqta.execute-api.us-east-1.amazonaws.com/dev/update",
+					"protocol": "https",
+					"host": [
+						"4asyooxqta",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Ibm-Client-Secret",
+						"value": "HftHOlDzzR9GfPJB1nQYr8s39jbp6f3z6vUXvVdh",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestId\": \"{{uuid}}\",\n    \"requestTime\": \"{{timeRPC3339}}\",\n    \"data\": {\n        \"username\": \"MentorOnline\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4asyooxqta.execute-api.us-east-1.amazonaws.com/dev/delete",
+					"protocol": "https",
+					"host": [
+						"4asyooxqta",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

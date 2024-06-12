@@ -1,0 +1,122 @@
+service: goservice-curd
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: provided.al2
+  region: us-east-1
+  environment:
+    RDS_CONN_STRING: "postgres://postgres:Khang123456@database-1.criywe6i4yum.ap-southeast-1.rds.amazonaws.com/postgres"
+  apiGateway:
+    metrics: true
+    apiKeySourceType: AUTHORIZER
+    apiKeys:
+      - free:
+          - ${self:custom.apiGatewayKey.${opt:stage, sls:stage}}
+    usagePlan:
+      - free:
+          quota:
+            limit: 10000
+            period: DAY
+          throttle:
+            burstLimit: 1000
+            rateLimit: 500
+plugins:
+  - serverless-add-api-key
+
+custom:
+  apiGatewayKey:
+    dev: "${self:service}-dev"
+    uat: "${self:service}-uat"
+    pro: "${self:service}-pro"
+
+package:
+  individually: true
+
+functions:
+  postinsert:
+    handler: bootstrap
+    package:
+      artifact: bin/postInsert.zip
+    events:
+      - http:
+          path: insert
+          method: post
+          private: true
+          request:
+            parameters:
+              headers:
+                X-IBM-CLIENT-SECRET:
+                  required: true
+          authorizer:
+            name: authorizerOpenapi
+            resultTtlInSeconds: 300
+            identitySource: method.request.header.X-IBM-CLIENT-SECRET
+            type: request
+
+  postupdate:
+    handler: bootstrap
+    package:
+      artifact: bin/postUpdate.zip
+    events:
+      - http:
+          path: update
+          method: post
+          private: true
+          request:
+            parameters:
+              headers:
+                X-IBM-CLIENT-SECRET:
+                  required: true
+          authorizer:
+            name: authorizerOpenapi
+            resultTtlInSeconds: 300
+            identitySource: method.request.header.X-IBM-CLIENT-SECRET
+            type: request
+
+  postdelete:
+    handler: bootstrap
+    package:
+      artifact: bin/postDelete.zip
+    events:
+      - http:
+          path: delete
+          method: post
+          private: true
+          request:
+            parameters:
+              headers:
+                X-IBM-CLIENT-SECRET:
+                  required: true
+          authorizer:
+            name: authorizerOpenapi
+            resultTtlInSeconds: 300
+            identitySource: method.request.header.X-IBM-CLIENT-SECRET
+            type: request
+
+  postgetusers:
+    handler: bootstrap
+    package:
+      artifact: bin/postGetUsers.zip
+    events:
+      - http:
+          path: getusers
+          method: post
+          private: true
+          request:
+            parameters:
+              headers:
+                X-IBM-CLIENT-SECRET:
+                  required: true
+          authorizer:
+            name: authorizerOpenapi
+            resultTtlInSeconds: 300
+            identitySource: method.request.header.X-IBM-CLIENT-SECRET
+            type: request
+
+  authorizerOpenapi:
+    runtime: python3.8
+    handler: authorizer/openapi-lambda-auth.lambda_handler
+    timeout: 3
+    memorySize: 256
+    description: authorizer openapi

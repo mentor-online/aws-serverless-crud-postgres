@@ -3,12 +3,16 @@
 Trong bối cảnh công nghệ thông tin ngày càng phát triển, việc xây dựng các ứng dụng có khả năng mở rộng và linh hoạt là rất cần thiết. Khóa học này sẽ giúp bạn hiểu sâu hơn về việc triển khai các dịch vụ không máy chủ (serverless) trên nền tảng AWS, sử dụng RDS PostgreSQL làm cơ sở dữ liệu, và kiểm soát tải với API Gateway.
 
 ## Thông Tin Khóa Học
-Chúng tôi sẽ bắt đầu bằng việc thiết lập một mô hình CRUD (Tạo, Đọc, Cập nhật, Xóa) serverless cho ứng dụng của bạn, sử dụng RDS PostgreSQL. Bạn sẽ được hướng dẫn cách xây dựng và quản lý bốn API sau để tương tác với cơ sở dữ liệu:
+Chúng tôi sẽ bắt đầu bằng việc thiết lập một mô hình CRUD (Create, Read, Update, Delete) serverless cho ứng dụng của bạn, sử dụng RDS PostgreSQL. Bạn sẽ được hướng dẫn cách xây dựng và quản lý bốn API sau để tương tác với cơ sở dữ liệu:
 
 - **Tạo Người Dùng Mới (Create User)**
 - **Cập Nhật Thông Tin Người Dùng (Update User)**
 - **Xóa Người Dùng Theo Tên Người Dùng (Delete User)**
 - **Lấy Danh Sách Người Dùng Theo Tên (Get User List)**
+
+## Mô hình triển khai
+![""](architecture.png)
+
 
 ### Tạo Bảng User
 Đầu tiên, chúng ta cần tạo một bảng `users` để lưu trữ thông tin. Dưới đây là câu lệnh SQL để tạo bảng:

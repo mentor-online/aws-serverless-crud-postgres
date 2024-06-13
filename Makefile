@@ -5,6 +5,9 @@ build:
 	cd postUpdate && env GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o ../bin/postUpdate/bootstrap ./postUpdate.go && cd ..
 	cd postDelete && env GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o ../bin/postDelete/bootstrap ./postDelete.go && cd ..
 	cd postGetUsers && env GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o ../bin/postGetUsers/bootstrap ./postGetUsers.go && cd ..
+	cd postGetUsers && env GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o ../bin/postGetUsers/bootstrap ./postGetUsers.go && cd ..
+	cd helloWorld && env GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o ../bin/helloWorld/bootstrap ./helloWorld.go && cd ..
+
 
 
 zip:
@@ -12,6 +15,7 @@ zip:
 	zip -j bin/postUpdate.zip bin/postUpdate/bootstrap
 	zip -j bin/postDelete.zip bin/postDelete/bootstrap
 	zip -j bin/postGetUsers.zip bin/postGetUsers/bootstrap
+	zip -j bin/helloWorld.zip bin/helloWorld/bootstrap
 
 	
 clean:

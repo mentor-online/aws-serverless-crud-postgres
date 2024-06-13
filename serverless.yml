@@ -102,6 +102,25 @@ functions:
       - http:
           path: getusers
           method: post
+          private: true 
+          request:
+            parameters:
+              headers:
+                X-IBM-CLIENT-SECRET:
+                  required: true
+          authorizer:
+            name: authorizerOpenapi
+            resultTtlInSeconds: 300
+            identitySource: method.request.header.X-IBM-CLIENT-SECRET
+            type: request
+  helloWorld:
+    handler: bootstrap
+    package:
+      artifact: bin/helloWorld.zip
+    events:
+      - http:
+          path: hello
+          method: get
           private: true
           request:
             parameters:

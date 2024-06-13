@@ -46,10 +46,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://4asyooxqta.execute-api.us-east-1.amazonaws.com/dev/getusers",
+					"raw": "https://e5s5kusphd.execute-api.us-east-1.amazonaws.com/dev/getusers",
 					"protocol": "https",
 					"host": [
-						"4asyooxqta",
+						"e5s5kusphd",
 						"execute-api",
 						"us-east-1",
 						"amazonaws",
@@ -89,7 +89,7 @@
 				"header": [
 					{
 						"key": "X-Ibm-Client-Secret",
-						"value": "HftHOlDzzR9GfPJB1nQYr8s39jbp6f3z6vUXvVdh",
+						"value": "2B0EdVXhdm5n71kzJK4IV2HifxeUQvEP6SHzxvdX",
 						"type": "text"
 					}
 				],
@@ -103,10 +103,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://4asyooxqta.execute-api.us-east-1.amazonaws.com/dev/insert",
+					"raw": "https://e5s5kusphd.execute-api.us-east-1.amazonaws.com/dev/insert",
 					"protocol": "https",
 					"host": [
-						"4asyooxqta",
+						"e5s5kusphd",
 						"execute-api",
 						"us-east-1",
 						"amazonaws",
@@ -146,7 +146,7 @@
 				"header": [
 					{
 						"key": "X-Ibm-Client-Secret",
-						"value": "HftHOlDzzR9GfPJB1nQYr8s39jbp6f3z6vUXvVdh",
+						"value": "2B0EdVXhdm5n71kzJK4IV2HifxeUQvEP6SHzxvdX",
 						"type": "text"
 					}
 				],
@@ -160,10 +160,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://4asyooxqta.execute-api.us-east-1.amazonaws.com/dev/update",
+					"raw": "https://e5s5kusphd.execute-api.us-east-1.amazonaws.com/dev/update",
 					"protocol": "https",
 					"host": [
-						"4asyooxqta",
+						"e5s5kusphd",
 						"execute-api",
 						"us-east-1",
 						"amazonaws",
@@ -184,7 +184,7 @@
 				"header": [
 					{
 						"key": "X-Ibm-Client-Secret",
-						"value": "HftHOlDzzR9GfPJB1nQYr8s39jbp6f3z6vUXvVdh",
+						"value": "2B0EdVXhdm5n71kzJK4IV2HifxeUQvEP6SHzxvdX",
 						"type": "text"
 					}
 				],
@@ -198,10 +198,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://4asyooxqta.execute-api.us-east-1.amazonaws.com/dev/delete",
+					"raw": "https://e5s5kusphd.execute-api.us-east-1.amazonaws.com/dev/delete",
 					"protocol": "https",
 					"host": [
-						"4asyooxqta",
+						"e5s5kusphd",
 						"execute-api",
 						"us-east-1",
 						"amazonaws",
@@ -210,6 +210,47 @@
 					"path": [
 						"dev",
 						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hello World",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Ibm-Client-Secret",
+						"value": "2B0EdVXhdm5n71kzJK4IV2HifxeUQvEP6SHzxvdX",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://e5s5kusphd.execute-api.us-east-1.amazonaws.com/dev/hello",
+					"protocol": "https",
+					"host": [
+						"e5s5kusphd",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"hello"
 					]
 				}
 			},
